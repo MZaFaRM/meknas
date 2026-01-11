@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+	--color-primary: #19255a;
+	--color-accent: #d4a84a;
+	--font-inter: "Inter", sans-serif;
+}
+
+.icon-whatsapp {
+	display: block;
+	width: 20px;
+	height: 20px;
+	background-color: currentColor;
+
+	mask: url("/assets/icons/whatsapp.svg") no-repeat center / contain;
+	-webkit-mask: url("/assets/icons/whatsapp.svg") no-repeat center / contain;
+}
+
+.material-icons {
+	@apply text-[18px];
+}
+
+header {
+	@apply flex justify-between *:justify-between *:items-center p-5 sticky top-0 z-50 bg-white;
+}
