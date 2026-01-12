@@ -13,8 +13,8 @@
 	height: 20px;
 	background-color: currentColor;
 
-	mask: url("/assets/icons/whatsapp.svg") no-repeat center / contain;
-	-webkit-mask: url("/assets/icons/whatsapp.svg") no-repeat center / contain;
+	mask: url("../assets/icons/whatsapp.svg") no-repeat center / contain;
+	-webkit-mask: url("../assets/icons/whatsapp.svg") no-repeat center / contain;
 }
 
 .material-icons {
