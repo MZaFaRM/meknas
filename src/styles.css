@@ -159,3 +159,117 @@ header {
 		opacity: 1;
 	}
 }
+
+#services {
+	@apply py-15;
+}
+
+.service-card {
+	@apply rounded-2xl border border-black/5 bg-white;
+	@apply p-6 shadow-[0_10px_30px_rgba(0,0,0,0.08)];
+	@apply transition-all duration-300 ease-out;
+	@apply flex gap-4;
+	@apply w-xl;
+}
+
+.service-card:hover {
+	@apply -translate-y-1 shadow-[0_18px_45px_rgba(0,0,0,0.14)];
+}
+
+/* icon block */
+.service-card__icon {
+	@apply flex items-start justify-center;
+	@apply w-12 h-12 rounded-xl;
+	@apply bg-primary/10 text-primary;
+	@apply border border-primary/20;
+	@apply shrink-0;
+	@apply transition-all duration-300 ease-out;
+
+	position: relative;
+	overflow: hidden;
+}
+
+.service-card__icon::after {
+	content: "";
+	position: absolute;
+	inset: -40% -60%;
+	background: linear-gradient(
+		120deg,
+		transparent 35%,
+		rgba(255, 255, 255, 0.55),
+		transparent 65%
+	);
+	transform: translateX(-80%);
+	transition: transform 0.7s ease;
+	opacity: 0.6;
+}
+
+.service-card:hover .service-card__icon {
+	@apply bg-accent/15 text-accent;
+	@apply border-accent/25;
+}
+
+.service-card:hover .service-card__icon::after {
+	transform: translateX(80%);
+	opacity: 0.9;
+}
+
+.service-card__icon span {
+	@apply text-[26px];
+	margin-top: 8px;
+}
+
+/* content */
+.service-card__content {
+	@apply flex flex-col;
+}
+
+.service-card__title {
+	@apply text-lg font-bold text-primary;
+}
+
+.service-card:hover .service-card__title {
+	@apply text-accent;
+}
+
+.service-card__subtitle {
+	@apply mt-1 text-sm leading-6 text-[#4B5563];
+}
+
+/* list */
+.service-card__list {
+	@apply mt-4 space-y-2 text-sm text-[#374151];
+}
+
+.service-card__list li {
+	@apply flex items-center gap-2;
+}
+
+.service-card__list li::before {
+	content: "›";
+	@apply text-primary font-bold text-base leading-none;
+	@apply transition-colors duration-300 ease-out;
+}
+
+.service-card:hover .service-card__list li::before {
+	@apply text-accent;
+}
+
+/* button */
+.service-card__btn {
+	@apply mt-5 inline-flex items-center gap-2;
+	@apply text-primary font-semibold text-sm;
+	@apply transition-all duration-300;
+}
+
+.service-card:hover .service-card__btn {
+	@apply text-accent;
+}
+
+.service-card__btn span {
+	@apply text-[18px] transition-transform duration-300;
+}
+
+.service-card__btn:hover span {
+	transform: translateX(4px);
+}
