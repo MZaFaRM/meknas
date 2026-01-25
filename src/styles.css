@@ -25,6 +25,7 @@
 .material-icons {
 	@apply text-[18px];
 }
+
 .site-header {
 	@apply sticky top-0 z-50;
 	@apply flex items-center gap-6;
@@ -34,7 +35,6 @@
 	@apply border-b border-black/5;
 
 	height: var(--nav-height);
-	position: relative;
 }
 
 /* brand */
@@ -97,7 +97,7 @@
 /* mobile menu panel */
 .mobile-menu {
 	@apply lg:hidden;
-	@apply absolute left-0 right-0 top-[calc(var(--nav-height))];
+	@apply absolute left-0 right-0 top-(--nav-height);
 	@apply border border-black/10 bg-white/95 backdrop-blur;
 	@apply shadow-[0_20px_60px_rgba(0,0,0,0.18)];
 	@apply p-5;
@@ -195,9 +195,10 @@ section {
 	z-index: 0;
 	background: linear-gradient(
 		to right,
-		color-mix(in srgb, var(--color-primary) 90%, transparent),
-		color-mix(in srgb, var(--color-primary) 40%, transparent),
-		transparent
+		color-mix(in srgb, var(--color-primary) 92%, transparent) 0%,
+		color-mix(in srgb, var(--color-primary) 82%, transparent) 65%,
+		color-mix(in srgb, var(--color-primary) 35%, transparent) 88%,
+		transparent 100%
 	);
 }
 
@@ -216,10 +217,52 @@ section {
 	box-shadow: 0 0 10px var(--color-accent);
 }
 
+.hero-inner {
+	@apply flex items-center justify-center;
+	@apply px-6;
+	@apply min-h-[calc(100svh-var(--nav-height))];
+}
+
+.hero-content {
+	@apply w-full max-w-xl;
+	@apply text-center lg:text-left;
+}
+
+.hero-title {
+	@apply font-bold text-white leading-tight;
+	@apply text-4xl; /* mobile */
+	@apply lg:text-6xl; /* desktop */
+	@apply my-10;
+}
+
+.hero-title-accent {
+	@apply text-accent block;
+}
+
+.hero-subtitle {
+	@apply text-[#D1D5DB] leading-7;
+	@apply text-base; /* mobile */
+	@apply lg:text-xl; /* desktop */
+	@apply mt-4;
+}
+
+.hero-scroll {
+	@apply relative h-24;
+	@apply lg:h-40;
+}
+
+.hero-cta {
+	@apply mt-6 flex flex-col gap-3;
+	@apply lg:flex-row lg:gap-x-6;
+	@apply items-center lg:items-start;
+}
+
 .cta-btn {
 	@apply inline-flex items-center justify-center gap-3;
 	@apply rounded-full px-7 py-1; /* thin height */
-	@apply w-70 h-10;
+	@apply w-full max-w-[340px];
+	@apply lg:w-70;
+	@apply h-10;
 	@apply text-white font-semibold text-sm tracking-wide;
 	@apply border;
 	@apply shadow-[0_12px_30px_rgba(0,0,0,0.20)];
@@ -288,7 +331,7 @@ section {
 .scroll-mouse {
 	position: absolute;
 	left: 50%;
-	bottom: 24px;
+	bottom: -56px;
 	transform: translateX(-50%);
 	z-index: 2;
 
