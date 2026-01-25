@@ -8,6 +8,10 @@
 	--font-inter: "Inter", sans-serif;
 }
 
+:root {
+	--nav-height: 72px;
+}
+
 .icon-whatsapp {
 	display: block;
 	width: 20px;
@@ -25,17 +29,59 @@
 header {
 	@apply flex justify-between *:justify-between *:items-center p-5 sticky top-0 z-50 bg-white;
 	@apply backdrop-blur bg-white/80;
-	height: 72px;
+	height: var(--nav-height);
 }
 
-#hero-section {
+section {
+	min-height: calc(100svh - var(--nav-height));
+	@apply flex flex-col justify-center;
+}
+
+.section-heading {
+	@apply flex flex-col items-center text-center gap-y-4;
+}
+
+.section-heading__eyebrow {
+	@apply text-accent font-semibold tracking-wide;
+}
+
+.section-heading__content {
+	@apply max-w-2xl;
+}
+
+.section-heading__title {
+	@apply text-5xl font-bold;
+}
+
+.section-heading__subtitle {
+	@apply mt-4;
+	@apply text-[#4B5563];
+}
+
+/* variants */
+.section-heading--light .section-heading__title {
+	@apply text-primary;
+}
+
+.section-heading--dark .section-heading__title {
+	@apply text-white;
+}
+
+.section-heading--dark .section-heading__subtitle {
+	@apply text-white/70;
+}
+
+.card-wrapper {
+	@apply mt-18 flex flex-wrap justify-center gap-6 w-fit mx-auto;
+}
+
+#hero {
 	@apply relative w-full
          bg-[url(../assets/hero-background.webp)]
          bg-cover bg-center bg-no-repeat;
-	height: calc(100svh - 72px);
 }
 
-#hero-section::before {
+#hero::before {
 	content: "";
 	position: absolute;
 	inset: 0;
@@ -48,7 +94,7 @@ header {
 	);
 }
 
-#hero-section > * {
+#hero > * {
 	position: relative;
 	z-index: 1;
 }
@@ -139,7 +185,7 @@ header {
 	transform: translateX(-50%);
 	z-index: 2;
 
-	@apply text-white/70 h-20;
+	@apply text-white/70;
 	animation: mouseJump 1.2s ease-in-out infinite;
 }
 
@@ -160,9 +206,7 @@ header {
 	}
 }
 
-#services {
-	@apply py-15;
-}
+/* SERVICES */
 
 .service-card {
 	@apply rounded-2xl border border-black/5 bg-white;
@@ -272,4 +316,89 @@ header {
 
 .service-card__btn:hover span {
 	transform: translateX(4px);
+}
+
+#process {
+	@apply bg-primary;
+}
+
+.step-card {
+	@apply rounded-2xl border border-white/5 p-7;
+	@apply shadow-[0_10px_30px_rgba(0,0,0,0.08)];
+	@apply transition-all duration-300 ease-out;
+	@apply w-72 aspect-square;
+	@apply relative;
+
+	background: color-mix(in srgb, var(--color-primary) 85%, white);
+}
+
+.step-card:hover {
+	@apply -translate-y-1 shadow-[0_18px_45px_rgba(0,0,0,0.14)];
+	background: color-mix(in srgb, var(--color-primary) 75%, white);
+}
+
+.step-card__num {
+	@apply absolute top-5 right-5;
+	@apply text-sm font-bold tracking-wide;
+	@apply text-white/60;
+	@apply transition-all duration-300 ease-out;
+}
+
+/* on hover, accent */
+.step-card:hover .step-card__num {
+	@apply text-accent;
+}
+
+/* big icon */
+.step-card__icon {
+	@apply w-16 h-16 rounded-2xl;
+	@apply bg-white/10 border border-white/20 text-white/50;
+	@apply flex items-center justify-center;
+	@apply transition-all duration-300 ease-out;
+
+	position: relative;
+	overflow: hidden;
+}
+
+/* shine sweep */
+.step-card__icon::after {
+	content: "";
+	position: absolute;
+	inset: -40% -60%;
+	background: linear-gradient(
+		120deg,
+		transparent 35%,
+		rgba(255, 255, 255, 0.55),
+		transparent 65%
+	);
+	transform: translateX(-80%);
+	transition: transform 0.7s ease;
+	opacity: 0.65;
+}
+
+.step-card:hover .step-card__icon::after {
+	transform: translateX(80%);
+	opacity: 0.95;
+}
+
+.step-card:hover .step-card__icon {
+	@apply bg-accent/15 border-accent/25 text-accent;
+}
+
+/* icon size */
+.step-card__icon span {
+	@apply text-[34px];
+}
+
+.step-card__title {
+	@apply mt-5 text-xl font-bold text-white;
+	@apply transition-colors duration-300 ease-out;
+}
+
+.step-card:hover .step-card__title {
+	@apply text-accent;
+}
+
+.step-card__subtitle {
+	@apply mt-2 text-sm leading-6 text-white/50;
 }
