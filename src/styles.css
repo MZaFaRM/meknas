@@ -137,7 +137,7 @@ mobile-menu__nav a {
 }
 
 section {
-	height: calc(100svh - var(--nav-height));
+	min-height: calc(100svh - var(--nav-height));
 	@apply overflow-hidden;
 	@apply py-8 lg:py-15;
 }
@@ -152,6 +152,11 @@ section {
 	@apply px-6 lg:px-14;
 	@apply w-full;
 }
+
+.section-heading--left .section-heading__content {
+	@apply max-w-none;
+}
+
 /* eyebrow */
 .section-heading__eyebrow {
 	@apply text-accent font-semibold tracking-wide;
@@ -237,6 +242,7 @@ section {
 }
 
 #hero {
+	height: calc(100svh - var(--nav-height));
 	@apply relative w-full
          bg-[url(../assets/hero-background.webp)]
          bg-cover bg-center bg-no-repeat;
@@ -617,9 +623,16 @@ section {
 
 /* location */
 
+#location {
+	@apply flex flex-col lg:flex-row items-center gap-10;
+}
+
 .map-wrapper {
-	@apply w-xl aspect-square overflow-hidden rounded-2xl;
+	@apply overflow-hidden rounded-2xl;
 	@apply border border-black/10 shadow-[0_10px_30px_rgba(0,0,0,0.10)];
+
+	@apply w-full mx-5 lg:mx-0 aspect-square;
+	@apply lg:max-w-xl;
 }
 
 .map-embed {
@@ -628,10 +641,14 @@ section {
 	border: 0;
 }
 
+.location-info {
+	@apply flex flex-col gap-4;
+}
+
 .info-card {
-	@apply w-full mr-30;
+	@apply w-full max-w-180;
 	@apply flex items-start gap-4;
-	@apply rounded-2xl p-6;
+	@apply rounded-2xl p-6 mx-5 lg:mx-0;
 	@apply border border-black/2 bg-black/2 backdrop-blur;
 	@apply transition-all duration-300 ease-out;
 	@apply select-none;
@@ -725,7 +742,8 @@ section {
 
 .contact-btn {
 	@apply inline-flex items-center justify-center gap-2;
-	@apply rounded-full px-6 py-2;
+	@apply rounded-md px-6 mx-6 py-2;
+	@apply w-full sm:w-auto;
 	@apply text-sm tracking-wide;
 	@apply border;
 	@apply shadow-[0_12px_30px_rgba(0,0,0,0.12)];
