@@ -269,6 +269,9 @@
 :root {
   --nav-height: 72px;
 }
+html {
+  scroll-behavior: smooth;
+}
 .icon-whatsapp {
   display: block;
   width: 20px;
@@ -477,6 +480,7 @@ mobile-menu__nav a {
 }
 section {
   min-height: calc(100svh - var(--nav-height));
+  scroll-margin-top: var(--nav-height);
   overflow: hidden;
   padding-block: calc(var(--spacing) * 8);
   @media (width >= 64rem) {
@@ -888,7 +892,7 @@ section {
   gap: calc(var(--spacing) * 4);
 }
 .slider__track .service-card {
-  width: 360px;
+  width: 330px;
   @media (width >= 64rem) {
     width: var(--container-xl);
   }
@@ -1468,16 +1472,20 @@ section {
   max-width: var(--container-6xl);
   padding-inline: calc(var(--spacing) * 6);
   padding-block: calc(var(--spacing) * 14);
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: calc(var(--spacing) * 10);
-  @media (width >= 48rem) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+  align-items: flex-start;
+  justify-content: space-between;
 }
 .site-footer__brand {
   display: flex;
   flex-direction: column;
   gap: calc(var(--spacing) * 4);
+  width: 100%;
+  @media (width >= 48rem) {
+    width: 320px;
+  }
 }
 .site-footer__logo {
   display: flex;
@@ -1509,6 +1517,7 @@ section {
   gap: calc(var(--spacing) * 3);
   font-size: var(--text-sm);
   line-height: var(--tw-leading, var(--text-sm--line-height));
+  width: 120px;
 }
 .site-footer__title {
   --tw-font-weight: var(--font-weight-semibold);

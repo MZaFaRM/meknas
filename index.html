@@ -26,10 +26,10 @@
 
 			<!-- center: desktop nav -->
 			<nav class="site-header__nav">
+				<a href="#hero">HOME</a>
 				<a href="#services">SERVICES</a>
-				<a href="#about">ABOUT US</a>
 				<a href="#process">PROCESS</a>
-				<a href="#contact">CONTACT</a>
+				<a href="#location">LOCATION</a>
 			</nav>
 
 			<!-- right: desktop buttons -->
@@ -61,10 +61,10 @@
 			<!-- mobile menu panel -->
 			<div class="mobile-menu" id="mobileMenu">
 				<nav class="mobile-menu__nav">
+					<a href="#hero">HOME</a>
 					<a href="#services">SERVICES</a>
-					<a href="#about">ABOUT US</a>
 					<a href="#process">PROCESS</a>
-					<a href="#contact">CONTACT</a>
+					<a href="#location">LOCATION</a>
 				</nav>
 			</div>
 		</header>
@@ -105,7 +105,9 @@
 
 			<div class="hero-scroll">
 				<div class="scroll-mouse">
-					<span class="material-icons">expand_more</span>
+					<a href="#services">
+						<span class="material-icons">expand_more</span></a
+					>
 				</div>
 			</div>
 		</section>
@@ -461,9 +463,28 @@
 		const burgerBtn = document.getElementById("burgerBtn");
 		const mobileMenu = document.getElementById("mobileMenu");
 
-		burgerBtn.addEventListener("click", () => {
+		const closeMenu = () => mobileMenu.classList.remove("is-open");
+
+		burgerBtn.addEventListener("click", (e) => {
+			e.stopPropagation();
 			mobileMenu.classList.toggle("is-open");
 		});
+
+		mobileMenu.querySelectorAll("a").forEach((a) => {
+			a.addEventListener("click", closeMenu);
+		});
+
+		document.addEventListener("click", (e) => {
+			if (!mobileMenu.classList.contains("is-open")) return;
+			if (mobileMenu.contains(e.target) || burgerBtn.contains(e.target))
+				return;
+			closeMenu();
+		});
+
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") closeMenu();
+		});
+
 		document.querySelectorAll(".slider").forEach((slider) => {
 			const cards = slider.querySelectorAll(".service-card, .step-card");
 

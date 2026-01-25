@@ -12,6 +12,10 @@
 	--nav-height: 72px;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 .icon-whatsapp {
 	display: block;
 	width: 20px;
@@ -138,6 +142,7 @@ mobile-menu__nav a {
 
 section {
 	min-height: calc(100svh - var(--nav-height));
+	scroll-margin-top: var(--nav-height);
 	@apply overflow-hidden;
 	@apply py-8 lg:py-15;
 }
@@ -426,7 +431,7 @@ section {
 }
 
 .slider__track .service-card {
-	@apply w-[360px] lg:w-xl;
+	@apply w-[330px] lg:w-xl;
 	flex: 0 0 auto;
 }
 
@@ -787,12 +792,14 @@ section {
 
 .site-footer__inner {
 	@apply mx-auto max-w-6xl px-6 py-14;
-	@apply grid gap-10;
-	@apply md:grid-cols-3;
+	@apply flex flex-wrap gap-10;
+	@apply items-start justify-between;
 }
 
+/* brand column */
 .site-footer__brand {
 	@apply flex flex-col gap-4;
+	@apply w-full md:w-[320px];
 }
 
 .site-footer__logo {
@@ -807,8 +814,10 @@ section {
 	@apply text-white/70 text-sm leading-6;
 }
 
+/* link columns */
 .site-footer__col {
 	@apply flex flex-col gap-3 text-sm;
+	@apply w-[120px];
 }
 
 .site-footer__title {
