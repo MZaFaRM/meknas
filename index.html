@@ -126,8 +126,8 @@
 				</div>
 			</div>
 			<div class="card-wrapper lg:px-14">
-				<div class="services-slider">
-					<div class="services-track">
+				<div class="slider">
+					<div class="slider__track">
 						<div class="service-card">
 							<div class="service-card__icon">
 								<span class="material-icons"
@@ -254,67 +254,79 @@
 		</section>
 		<section id="process" class="section--col">
 			<div class="section-heading section-heading--dark">
-				<p class="section-heading__eyebrow">OUR SERVICES</p>
+				<p class="section-heading__eyebrow">HOW IT WORKS</p>
 
 				<div class="section-heading__content">
 					<p class="section-heading__title">
-						Complete Business Solutions
+						Simple 4-Step Process
 					</p>
 					<p class="section-heading__subtitle">
-						From trade licenses to government documentation, we
-						handle all your business administrative needs with
-						expertise and efficiency.
+						We've streamlined the process to make government
+						services hassle-free. From inquiry to delivery, we
+						handle everything.
 					</p>
 				</div>
 			</div>
 			<div class="card-wrapper">
-				<div class="step-card">
-					<div class="step-card__num">01</div>
-					<div class="step-card__icon">
-						<span class="material-icons">description</span>
-					</div>
+				<div class="slider">
+					<div class="slider__track">
+						<div class="step-card">
+							<div class="step-card__num">01</div>
+							<div class="step-card__icon">
+								<span class="material-icons">description</span>
+							</div>
 
-					<p class="step-card__title">Submit Your Documents</p>
-					<p class="step-card__subtitle">
-						Send your passport, visa copy, and required business
-						details.
-					</p>
-				</div>
-				<div class="step-card">
-					<div class="step-card__num">01</div>
-					<div class="step-card__icon">
-						<span class="material-icons">description</span>
-					</div>
+							<p class="step-card__title">
+								Submit Your Documents
+							</p>
+							<p class="step-card__subtitle">
+								Send your passport, visa copy, and required
+								business details.
+							</p>
+						</div>
+						<div class="step-card">
+							<div class="step-card__num">02</div>
+							<div class="step-card__icon">
+								<span class="material-icons">description</span>
+							</div>
 
-					<p class="step-card__title">Submit Your Documents</p>
-					<p class="step-card__subtitle">
-						Send your passport, visa copy, and required business
-						details.
-					</p>
-				</div>
-				<div class="step-card">
-					<div class="step-card__num">01</div>
-					<div class="step-card__icon">
-						<span class="material-icons">description</span>
-					</div>
+							<p class="step-card__title">
+								Submit Your Documents
+							</p>
+							<p class="step-card__subtitle">
+								Send your passport, visa copy, and required
+								business details.
+							</p>
+						</div>
+						<div class="step-card">
+							<div class="step-card__num">03</div>
+							<div class="step-card__icon">
+								<span class="material-icons">description</span>
+							</div>
 
-					<p class="step-card__title">Submit Your Documents</p>
-					<p class="step-card__subtitle">
-						Send your passport, visa copy, and required business
-						details.
-					</p>
-				</div>
-				<div class="step-card">
-					<div class="step-card__num">01</div>
-					<div class="step-card__icon">
-						<span class="material-icons">description</span>
-					</div>
+							<p class="step-card__title">
+								Submit Your Documents
+							</p>
+							<p class="step-card__subtitle">
+								Send your passport, visa copy, and required
+								business details.
+							</p>
+						</div>
+						<div class="step-card">
+							<div class="step-card__num">04</div>
+							<div class="step-card__icon">
+								<span class="material-icons">description</span>
+							</div>
 
-					<p class="step-card__title">Submit Your Documents</p>
-					<p class="step-card__subtitle">
-						Send your passport, visa copy, and required business
-						details.
-					</p>
+							<p class="step-card__title">
+								Submit Your Documents
+							</p>
+							<p class="step-card__subtitle">
+								Send your passport, visa copy, and required
+								business details.
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -453,6 +465,51 @@
 
 		burgerBtn.addEventListener("click", () => {
 			mobileMenu.classList.toggle("is-open");
+		});
+		document.querySelectorAll(".slider").forEach((slider) => {
+			const cards = slider.querySelectorAll(".service-card, .step-card");
+
+			let isHovering = false;
+
+			const setActive = (target) => {
+				cards.forEach((c) => c.classList.remove("is-active"));
+				target.classList.add("is-active");
+			};
+
+			const obs = new IntersectionObserver(
+				(entries) => {
+					if (isHovering) return;
+
+					let best = null;
+					for (const e of entries) {
+						if (
+							!best ||
+							e.intersectionRatio > best.intersectionRatio
+						)
+							best = e;
+					}
+
+					if (best && best.isIntersecting) setActive(best.target);
+				},
+				{
+					root: slider,
+					threshold: [0.35, 0.5, 0.65, 0.8],
+				},
+			);
+
+			cards.forEach((c) => obs.observe(c));
+
+			// Hover overrides is-active
+			cards.forEach((card) => {
+				card.addEventListener("mouseenter", () => {
+					isHovering = true;
+					setActive(card);
+				});
+
+				card.addEventListener("mouseleave", () => {
+					isHovering = false;
+				});
+			});
 		});
 	</script>
 </html>
