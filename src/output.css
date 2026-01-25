@@ -14,6 +14,8 @@
     --container-xl: 36rem;
     --container-2xl: 42rem;
     --container-6xl: 72rem;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-base: 1rem;
@@ -22,6 +24,8 @@
     --text-lg--line-height: calc(1.75 / 1.125);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
     --text-5xl: 3rem;
@@ -463,7 +467,16 @@ mobile-menu__nav a {
   }
 }
 section {
-  min-height: calc(100svh - var(--nav-height));
+  height: calc(100svh - var(--nav-height));
+  overflow: hidden;
+  padding-inline: calc(var(--spacing) * 6);
+  @media (width >= 64rem) {
+    padding-inline: calc(var(--spacing) * 14);
+  }
+  padding-block: calc(var(--spacing) * 8);
+  @media (width >= 64rem) {
+    padding-block: calc(var(--spacing) * 15);
+  }
 }
 .section--col {
   display: flex;
@@ -474,8 +487,12 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: calc(var(--spacing) * 4);
   text-align: center;
+  row-gap: calc(var(--spacing) * 3);
+  @media (width >= 64rem) {
+    row-gap: calc(var(--spacing) * 4);
+  }
+  width: 100%;
 }
 .section-heading__eyebrow {
   --tw-font-weight: var(--font-weight-semibold);
@@ -483,18 +500,46 @@ section {
   --tw-tracking: var(--tracking-wide);
   letter-spacing: var(--tracking-wide);
   color: var(--color-accent);
+  font-size: var(--text-xs);
+  line-height: var(--tw-leading, var(--text-xs--line-height));
+  @media (width >= 64rem) {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
 }
 .section-heading__content {
+  width: 100%;
   max-width: var(--container-2xl);
 }
 .section-heading__title {
-  font-size: var(--text-5xl);
-  line-height: var(--tw-leading, var(--text-5xl--line-height));
+  --tw-leading: var(--leading-tight);
+  line-height: var(--leading-tight);
   --tw-font-weight: var(--font-weight-bold);
   font-weight: var(--font-weight-bold);
+  font-size: var(--text-3xl);
+  line-height: var(--tw-leading, var(--text-3xl--line-height));
+  @media (width >= 64rem) {
+    font-size: var(--text-5xl);
+    line-height: var(--tw-leading, var(--text-5xl--line-height));
+  }
 }
 .section-heading__subtitle {
-  margin-top: calc(var(--spacing) * 4);
+  margin-top: calc(var(--spacing) * 3);
+  @media (width >= 64rem) {
+    margin-top: calc(var(--spacing) * 4);
+  }
+  font-size: var(--text-sm);
+  line-height: var(--tw-leading, var(--text-sm--line-height));
+  @media (width >= 64rem) {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+  }
+  --tw-leading: calc(var(--spacing) * 6);
+  line-height: calc(var(--spacing) * 6);
+  @media (width >= 64rem) {
+    --tw-leading: calc(var(--spacing) * 7);
+    line-height: calc(var(--spacing) * 7);
+  }
   color: #4B5563;
 }
 .section-heading--light .section-heading__title {
@@ -513,7 +558,7 @@ section {
   margin-inline: auto;
   margin-top: calc(var(--spacing) * 18);
   display: flex;
-  width: fit-content;
+  width: 100%;
   flex-wrap: wrap;
   justify-content: center;
   gap: calc(var(--spacing) * 6);
@@ -748,7 +793,7 @@ section {
 .scroll-mouse {
   position: absolute;
   left: 50%;
-  bottom: -56px;
+  bottom: 0px;
   transform: translateX(-50%);
   z-index: 2;
   color: color-mix(in srgb, #fff 70%, transparent);
@@ -791,6 +836,44 @@ section {
   display: flex;
   gap: calc(var(--spacing) * 4);
   width: var(--container-xl);
+}
+.services-slider {
+  width: 100%;
+  padding-block: calc(var(--spacing) * 12);
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.services-slider::-webkit-scrollbar {
+  display: none;
+}
+.services-slider {
+  scrollbar-width: none;
+}
+.services-track {
+  display: flex;
+  gap: calc(var(--spacing) * 6);
+  padding-inline: calc(var(--spacing) * 6);
+  width: max-content;
+}
+.services-track .service-card {
+  scroll-snap-align: start;
+  width: 340px;
+}
+@media (min-width: 1024px) {
+  .services-slider {
+    overflow: visible;
+  }
+  .services-track {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: calc(var(--spacing) * 6);
+    padding-inline: calc(var(--spacing) * 0);
+    width: 100%;
+  }
+  .services-track .service-card {
+    width: 100%;
+  }
 }
 .service-card:hover {
   --tw-translate-y: calc(var(--spacing) * -1);

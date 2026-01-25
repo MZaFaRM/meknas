@@ -137,7 +137,10 @@ mobile-menu__nav a {
 }
 
 section {
-	min-height: calc(100svh - var(--nav-height));
+	height: calc(100svh - var(--nav-height));
+	@apply overflow-hidden;
+	@apply px-6 lg:px-14;
+	@apply py-8 lg:py-15;
 }
 
 .section--col {
@@ -145,23 +148,32 @@ section {
 }
 
 .section-heading {
-	@apply flex flex-col items-center text-center gap-y-4;
+	@apply flex flex-col items-center text-center;
+	@apply gap-y-3 lg:gap-y-4;
+	@apply w-full;
 }
-
+/* eyebrow */
 .section-heading__eyebrow {
 	@apply text-accent font-semibold tracking-wide;
+	@apply text-xs lg:text-sm;
 }
 
+/* content width */
 .section-heading__content {
-	@apply max-w-2xl;
+	@apply w-full max-w-2xl;
 }
 
+/* title responsive */
 .section-heading__title {
-	@apply text-5xl font-bold;
+	@apply font-bold leading-tight;
+	@apply text-3xl lg:text-5xl;
 }
 
+/* subtitle responsive */
 .section-heading__subtitle {
-	@apply mt-4;
+	@apply mt-3 lg:mt-4;
+	@apply text-sm lg:text-base;
+	@apply leading-6 lg:leading-7;
 	@apply text-[#4B5563];
 }
 
@@ -179,7 +191,7 @@ section {
 }
 
 .card-wrapper {
-	@apply mt-18 flex flex-wrap justify-center gap-6 w-fit mx-auto;
+	@apply mt-18 flex flex-wrap justify-center gap-6 w-full mx-auto;
 }
 
 #hero {
@@ -331,7 +343,7 @@ section {
 .scroll-mouse {
 	position: absolute;
 	left: 50%;
-	bottom: -56px;
+	bottom: 0px;
 	transform: translateX(-50%);
 	z-index: 2;
 
@@ -364,6 +376,47 @@ section {
 	@apply transition-all duration-300 ease-out;
 	@apply flex gap-4;
 	@apply w-xl;
+}
+
+/* MOBILE: slider */
+.services-slider {
+	@apply py-12 w-full;
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+}
+
+.services-slider::-webkit-scrollbar {
+	display: none;
+}
+.services-slider {
+	scrollbar-width: none;
+}
+
+.services-track {
+	@apply flex gap-6 px-6;
+	width: max-content;
+}
+
+.services-track .service-card {
+	scroll-snap-align: start;
+	@apply w-[340px];
+}
+
+/* DESKTOP: normal grid */
+@media (min-width: 1024px) {
+	.services-slider {
+		overflow: visible;
+	}
+
+	.services-track {
+		@apply grid grid-cols-2 gap-6 px-0;
+		width: 100%;
+	}
+
+	.services-track .service-card {
+		@apply w-full;
+	}
 }
 
 .service-card:hover {
