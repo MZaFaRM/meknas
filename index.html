@@ -13,36 +13,62 @@
 		<link href="src/output.css" rel="stylesheet" />
 	</head>
 	<body class="font-inter text-primary text-sm">
-		<header>
-			<div class="gap-x-2 hidden md:flex">
+		<header class="site-header">
+			<!-- left: logo -->
+			<div class="site-header__brand">
 				<img
 					src="https://placehold.co/25x25/19255A/D4A84A?text=M"
 					alt="meknas-logo"
-					class="rounded-sm"
+					class="site-header__logo"
 				/>
-				<div class="font-bold tracking-wide">MEKNAS</div>
+				<div class="site-header__name">MEKNAS</div>
 			</div>
-			<div
-				class="gap-x-3 md:gap-x-10 flex flex-1 justify-center md:flex-none md:justify-between"
-			>
-				<p>SERVICES</p>
-				<p>ABOUT US</p>
-				<p>PROCESS</p>
-				<p>CONTACT</p>
-			</div>
-			<div
-				class="gap-x-2 *:flex *:items-center *:gap-x-2 *:h-8 *:px-2 *:rounded-md hidden md:flex"
-			>
-				<button>
+
+			<!-- center: desktop nav -->
+			<nav class="site-header__nav">
+				<a href="#services">SERVICES</a>
+				<a href="#about">ABOUT US</a>
+				<a href="#process">PROCESS</a>
+				<a href="#contact">CONTACT</a>
+			</nav>
+
+			<!-- right: desktop buttons -->
+			<div class="site-header__actions">
+				<a class="site-header__action" href="tel:+971501234567">
 					<span class="material-icons">call</span>
-					<span>CALL US</span>
-				</button>
-				<button class="text-whatsapp">
+					<span class="hidden lg:block">CALL US</span>
+				</a>
+
+				<a
+					class="site-header__action site-header__action--whatsapp"
+					href="https://wa.me/971501234567"
+					target="_blank"
+				>
 					<span class="icon-whatsapp"></span>
-					<span>WHATSAPP</span>
-				</button>
+					<span class="hidden lg:block">WHATSAPP</span>
+				</a>
+			</div>
+
+			<!-- hamburger (mobile) -->
+			<button
+				class="site-header__burger"
+				id="burgerBtn"
+				aria-label="Open menu"
+			>
+				<span class="material-icons">menu</span>
+			</button>
+
+			<!-- mobile menu panel -->
+			<div class="mobile-menu" id="mobileMenu">
+				<nav class="mobile-menu__nav">
+					<a href="#services">SERVICES</a>
+					<a href="#about">ABOUT US</a>
+					<a href="#process">PROCESS</a>
+					<a href="#contact">CONTACT</a>
+				</nav>
 			</div>
 		</header>
+
 		<section id="hero" class="section--col">
 			<div class="flex items-center justify-center h-[85%]">
 				<div class="*:mt-5">
@@ -394,4 +420,12 @@
 			</div>
 		</footer>
 	</body>
+	<script>
+		const burgerBtn = document.getElementById("burgerBtn");
+		const mobileMenu = document.getElementById("mobileMenu");
+
+		burgerBtn.addEventListener("click", () => {
+			mobileMenu.classList.toggle("is-open");
+		});
+	</script>
 </html>

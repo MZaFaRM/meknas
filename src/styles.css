@@ -25,11 +25,115 @@
 .material-icons {
 	@apply text-[18px];
 }
+.site-header {
+	@apply sticky top-0 z-50;
+	@apply flex items-center gap-6;
+	@apply justify-between;
+	@apply px-5;
+	@apply bg-white/80 backdrop-blur;
+	@apply border-b border-black/5;
 
-header {
-	@apply flex justify-between *:justify-between *:items-center p-5 sticky top-0 z-50 bg-white;
-	@apply backdrop-blur bg-white/80;
 	height: var(--nav-height);
+	position: relative;
+}
+
+/* brand */
+.site-header__brand {
+	@apply flex items-center gap-2 font-bold tracking-wide mr-auto lg:mr-0;
+}
+
+.site-header__logo {
+	@apply rounded-sm;
+}
+
+/* desktop nav */
+.site-header__nav {
+	@apply hidden lg:flex items-center gap-10;
+}
+
+.site-header__nav a {
+	@apply text-primary transition-colors duration-200;
+}
+
+.site-header__nav a:hover {
+	@apply text-accent;
+}
+
+/* desktop actions */
+.site-header__actions {
+	@apply items-center gap-2;
+}
+
+.site-header__action {
+	@apply inline-flex items-center gap-2;
+	@apply h-9 rounded-md;
+	@apply px-3;
+	@apply text-sm font-semibold;
+	@apply border border-black/10;
+	@apply transition-all duration-200;
+}
+
+.site-header__action:hover {
+	@apply -translate-y-px shadow-md;
+}
+
+.site-header__action--whatsapp {
+	@apply text-whatsapp;
+}
+
+/* burger */
+.site-header__burger {
+	@apply lg:hidden inline-flex items-center justify-center;
+	@apply w-10 h-10 rounded-md;
+	@apply border border-black/10 bg-white/70;
+	@apply text-primary;
+	@apply transition-all duration-200;
+}
+
+.site-header__burger:hover {
+	@apply shadow-md;
+}
+
+/* mobile menu panel */
+.mobile-menu {
+	@apply lg:hidden;
+	@apply absolute left-0 right-0 top-[calc(var(--nav-height))];
+	@apply border border-black/10 bg-white/95 backdrop-blur;
+	@apply shadow-[0_20px_60px_rgba(0,0,0,0.18)];
+	@apply p-5;
+
+	opacity: 0;
+	transform: translateY(-10px) scale(0.98);
+	pointer-events: none;
+	transition:
+		opacity 220ms ease,
+		transform 220ms ease;
+}
+
+.mobile-menu.is-open {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+	pointer-events: auto;
+}
+
+.mobile-menu__nav {
+	@apply flex flex-col gap-3 text-center;
+}
+
+.mobile-menu__nav a {
+	@apply px-3 py-2;
+	@apply text-primary;
+	@apply transition-colors duration-200;
+}
+
+mobile-menu__nav a {
+	@apply px-3 py-2 rounded-xl;
+	@apply text-primary font-semibold;
+	@apply transition-all duration-200;
+}
+
+.mobile-menu__nav a:hover {
+	@apply bg-accent/10;
 }
 
 section {
@@ -517,7 +621,7 @@ section {
 .contact-btn {
 	@apply inline-flex items-center justify-center gap-2;
 	@apply rounded-full px-6 py-2;
-	@apply text-sm font-semibold tracking-wide;
+	@apply text-sm tracking-wide;
 	@apply border;
 	@apply shadow-[0_12px_30px_rgba(0,0,0,0.12)];
 	@apply transition-all duration-300 ease-out;
