@@ -550,3 +550,61 @@ section {
 .contact-btn--whatsapp:hover {
 	@apply border-white/40;
 }
+
+/* footer */
+
+.site-footer {
+	@apply bg-primary text-white;
+	@apply border-t border-white/10;
+}
+
+.site-footer__inner {
+	@apply mx-auto max-w-6xl px-6 py-14;
+	@apply grid gap-10;
+	@apply md:grid-cols-3;
+}
+
+.site-footer__brand {
+	@apply flex flex-col gap-4;
+}
+
+.site-footer__logo {
+	@apply flex items-center gap-3 font-bold tracking-wide text-lg;
+}
+
+.site-footer__logo img {
+	@apply rounded-md;
+}
+
+.site-footer__tagline {
+	@apply text-white/70 text-sm leading-6;
+}
+
+.site-footer__col {
+	@apply flex flex-col gap-3 text-sm;
+}
+
+.site-footer__title {
+	@apply font-semibold text-white tracking-wide;
+}
+
+.site-footer__col a {
+	@apply text-white/70 transition-colors duration-200;
+}
+
+.site-footer__col a:hover {
+	@apply text-accent;
+}
+
+.site-footer__muted {
+	@apply text-white/60 text-sm;
+}
+
+.site-footer__bottom {
+	@apply border-t border-white/10;
+	@apply py-6 px-6;
+}
+
+.site-footer__bottom p {
+	@apply mx-auto max-w-6xl text-center text-white/60 text-sm;
+}
