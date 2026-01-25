@@ -34,6 +34,9 @@ header {
 
 section {
 	min-height: calc(100svh - var(--nav-height));
+}
+
+.section--col {
 	@apply flex flex-col justify-center;
 }
 
@@ -210,7 +213,7 @@ section {
 
 .service-card {
 	@apply rounded-2xl border border-black/5 bg-white;
-	@apply p-6 shadow-[0_10px_30px_rgba(0,0,0,0.08)];
+	@apply p-6;
 	@apply transition-all duration-300 ease-out;
 	@apply flex gap-4;
 	@apply w-xl;
@@ -401,4 +404,149 @@ section {
 
 .step-card__subtitle {
 	@apply mt-2 text-sm leading-6 text-white/50;
+}
+
+/* location */
+
+.map-wrapper {
+	@apply w-xl aspect-square overflow-hidden rounded-2xl;
+	@apply border border-black/10 shadow-[0_10px_30px_rgba(0,0,0,0.10)];
+}
+
+.map-embed {
+	@apply w-full;
+	@apply aspect-square;
+	border: 0;
+}
+
+.info-card {
+	@apply w-full mr-30;
+	@apply flex items-start gap-4;
+	@apply rounded-2xl p-6;
+	@apply border border-black/2 bg-black/2 backdrop-blur;
+	@apply transition-all duration-300 ease-out;
+	@apply select-none;
+
+	position: relative;
+	overflow: hidden;
+}
+
+/* premium shine sweep */
+.info-card::after {
+	content: "";
+	position: absolute;
+	inset: -50% -40%;
+	background: linear-gradient(
+		120deg,
+		transparent 35%,
+		rgba(255, 255, 255, 0.55),
+		transparent 65%
+	);
+	transform: translateX(-80%);
+	transition: transform 0.8s ease;
+	opacity: 0.7;
+}
+
+.info-card:hover::after {
+	transform: translateX(80%);
+	opacity: 1;
+}
+
+.info-card:hover {
+	@apply -translate-y-1;
+}
+
+/* icon */
+.info-card__icon {
+	@apply w-14 h-14 rounded-2xl shrink-0;
+	@apply flex items-center justify-center;
+	@apply bg-primary/10 border border-primary/20 text-primary;
+	@apply transition-all duration-300 ease-out;
+
+	position: relative;
+	overflow: hidden;
+}
+
+/* icon shine */
+.info-card__icon::after {
+	content: "";
+	position: absolute;
+	inset: -40% -60%;
+	background: linear-gradient(
+		120deg,
+		transparent 35%,
+		rgba(255, 255, 255, 0.6),
+		transparent 65%
+	);
+	transform: translateX(-85%);
+	transition: transform 0.7s ease;
+	opacity: 0.75;
+}
+
+.info-card:hover .info-card__icon::after {
+	transform: translateX(85%);
+}
+
+.info-card:hover .info-card__icon {
+	@apply bg-accent/15 border-accent/25 text-accent;
+	box-shadow: 0 18px 45px rgba(212, 168, 74, 0.2);
+}
+
+.info-card__icon span {
+	@apply text-[30px];
+}
+
+/* text */
+.info-card__title {
+	@apply text-base font-bold text-primary;
+	@apply transition-colors duration-300 ease-out;
+}
+
+.info-card:hover .info-card__title {
+	@apply text-accent;
+}
+
+.info-card__desc {
+	@apply mt-1 text-sm leading-6 text-[#4B5563];
+}
+
+.contact-btns {
+	@apply mt-6 flex flex-wrap gap-4;
+}
+
+.contact-btn {
+	@apply inline-flex items-center justify-center gap-2;
+	@apply rounded-full px-6 py-2;
+	@apply text-sm font-semibold tracking-wide;
+	@apply border;
+	@apply shadow-[0_12px_30px_rgba(0,0,0,0.12)];
+	@apply transition-all duration-300 ease-out;
+	@apply select-none;
+}
+
+.contact-btn:hover {
+	@apply -translate-y-[2px];
+	@apply shadow-[0_18px_45px_rgba(0,0,0,0.18)];
+}
+
+.contact-btn:active {
+	@apply translate-y-0 scale-[0.98];
+}
+
+/* Call button (primary) */
+.contact-btn--call {
+	@apply bg-primary text-white border-white/20;
+}
+
+.contact-btn--call:hover {
+	@apply border-white/40;
+}
+
+/* WhatsApp button (green) */
+.contact-btn--whatsapp {
+	@apply bg-whatsapp text-white border-white/20;
+}
+
+.contact-btn--whatsapp:hover {
+	@apply border-white/40;
 }

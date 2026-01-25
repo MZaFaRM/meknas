@@ -192,6 +192,12 @@
   }
 }
 @layer utilities {
+  .mt-5\! {
+    margin-top: calc(var(--spacing) * 5) !important;
+  }
+  .mt-10 {
+    margin-top: calc(var(--spacing) * 10);
+  }
   .flex {
     display: flex;
   }
@@ -207,11 +213,26 @@
   .flex-1 {
     flex: 1;
   }
+  .shrink-0 {
+    flex-shrink: 0;
+  }
   .items-center {
     align-items: center;
   }
+  .items-start\! {
+    align-items: flex-start !important;
+  }
   .justify-center {
     justify-content: center;
+  }
+  .justify-end {
+    justify-content: flex-end;
+  }
+  .justify-start\! {
+    justify-content: flex-start !important;
+  }
+  .gap-10 {
+    gap: calc(var(--spacing) * 10);
   }
   .gap-x-2 {
     column-gap: calc(var(--spacing) * 2);
@@ -224,6 +245,9 @@
   }
   .rounded-sm {
     border-radius: var(--radius-sm);
+  }
+  .text-left\! {
+    text-align: left !important;
   }
   .font-inter {
     font-family: var(--font-inter);
@@ -367,6 +391,8 @@ header {
 }
 section {
   min-height: calc(100svh - var(--nav-height));
+}
+.section--col {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -610,8 +636,6 @@ section {
   }
   background-color: var(--color-white);
   padding: calc(var(--spacing) * 6);
-  --tw-shadow: 0 10px 30px var(--tw-shadow-color, rgba(0,0,0,0.08));
-  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   transition-property: all;
   transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
   transition-duration: var(--tw-duration, var(--default-transition-duration));
@@ -923,6 +947,229 @@ section {
   color: color-mix(in srgb, #fff 50%, transparent);
   @supports (color: color-mix(in lab, red, red)) {
     color: color-mix(in oklab, var(--color-white) 50%, transparent);
+  }
+}
+.map-wrapper {
+  aspect-ratio: 1 / 1;
+  width: var(--container-xl);
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  border-color: color-mix(in srgb, #000 10%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-black) 10%, transparent);
+  }
+  --tw-shadow: 0 10px 30px var(--tw-shadow-color, rgba(0,0,0,0.10));
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+}
+.map-embed {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 0;
+}
+.info-card {
+  margin-right: calc(var(--spacing) * 30);
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--spacing) * 4);
+  border-radius: var(--radius-2xl);
+  padding: calc(var(--spacing) * 6);
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  border-color: color-mix(in srgb, #000 2%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-black) 2%, transparent);
+  }
+  background-color: color-mix(in srgb, #000 2%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-black) 2%, transparent);
+  }
+  --tw-backdrop-blur: blur(8px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+  backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
+  --tw-ease: var(--ease-out);
+  transition-timing-function: var(--ease-out);
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+.info-card::after {
+  content: "";
+  position: absolute;
+  inset: -50% -40%;
+  background: linear-gradient(	120deg,	transparent 35%,	rgba(255, 255, 255, 0.55),	transparent 65%	);
+  transform: translateX(-80%);
+  transition: transform 0.8s ease;
+  opacity: 0.7;
+}
+.info-card:hover::after {
+  transform: translateX(80%);
+  opacity: 1;
+}
+.info-card:hover {
+  --tw-translate-y: calc(var(--spacing) * -1);
+  translate: var(--tw-translate-x) var(--tw-translate-y);
+}
+.info-card__icon {
+  height: calc(var(--spacing) * 14);
+  width: calc(var(--spacing) * 14);
+  flex-shrink: 0;
+  border-radius: var(--radius-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  border-color: color-mix(in srgb, #19255a 20%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
+  }
+  background-color: color-mix(in srgb, #19255a 10%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
+  }
+  color: var(--color-primary);
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
+  --tw-ease: var(--ease-out);
+  transition-timing-function: var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+.info-card__icon::after {
+  content: "";
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(	120deg,	transparent 35%,	rgba(255, 255, 255, 0.6),	transparent 65%	);
+  transform: translateX(-85%);
+  transition: transform 0.7s ease;
+  opacity: 0.75;
+}
+.info-card:hover .info-card__icon::after {
+  transform: translateX(85%);
+}
+.info-card:hover .info-card__icon {
+  border-color: color-mix(in srgb, #d4a84a 25%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-accent) 25%, transparent);
+  }
+  background-color: color-mix(in srgb, #d4a84a 15%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-accent) 15%, transparent);
+  }
+  color: var(--color-accent);
+  box-shadow: 0 18px 45px rgba(212, 168, 74, 0.2);
+}
+.info-card__icon span {
+  font-size: 30px;
+}
+.info-card__title {
+  font-size: var(--text-base);
+  line-height: var(--tw-leading, var(--text-base--line-height));
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
+  --tw-ease: var(--ease-out);
+  transition-timing-function: var(--ease-out);
+}
+.info-card:hover .info-card__title {
+  color: var(--color-accent);
+}
+.info-card__desc {
+  margin-top: calc(var(--spacing) * 1);
+  font-size: var(--text-sm);
+  line-height: var(--tw-leading, var(--text-sm--line-height));
+  --tw-leading: calc(var(--spacing) * 6);
+  line-height: calc(var(--spacing) * 6);
+  color: #4B5563;
+}
+.contact-btns {
+  margin-top: calc(var(--spacing) * 6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--spacing) * 4);
+}
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--spacing) * 2);
+  border-radius: calc(infinity * 1px);
+  padding-inline: calc(var(--spacing) * 6);
+  padding-block: calc(var(--spacing) * 2);
+  font-size: var(--text-sm);
+  line-height: var(--tw-leading, var(--text-sm--line-height));
+  --tw-font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold);
+  --tw-tracking: var(--tracking-wide);
+  letter-spacing: var(--tracking-wide);
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  --tw-shadow: 0 12px 30px var(--tw-shadow-color, rgba(0,0,0,0.12));
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
+  --tw-ease: var(--ease-out);
+  transition-timing-function: var(--ease-out);
+  -webkit-user-select: none;
+  user-select: none;
+}
+.contact-btn:hover {
+  --tw-translate-y: calc(2px * -1);
+  translate: var(--tw-translate-x) var(--tw-translate-y);
+  --tw-shadow: 0 18px 45px var(--tw-shadow-color, rgba(0,0,0,0.18));
+  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+}
+.contact-btn:active {
+  --tw-translate-y: calc(var(--spacing) * 0);
+  translate: var(--tw-translate-x) var(--tw-translate-y);
+  scale: 0.98;
+}
+.contact-btn--call {
+  border-color: color-mix(in srgb, #fff 20%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-white) 20%, transparent);
+  }
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+.contact-btn--call:hover {
+  border-color: color-mix(in srgb, #fff 40%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-white) 40%, transparent);
+  }
+}
+.contact-btn--whatsapp {
+  border-color: color-mix(in srgb, #fff 20%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-white) 20%, transparent);
+  }
+  background-color: var(--color-whatsapp);
+  color: var(--color-white);
+}
+.contact-btn--whatsapp:hover {
+  border-color: color-mix(in srgb, #fff 40%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-white) 40%, transparent);
   }
 }
 @property --tw-leading {
