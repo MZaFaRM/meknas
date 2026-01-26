@@ -674,9 +674,9 @@ section {
 }
 
 .info-card {
-	@apply w-full max-w-180;
+	@apply lg:max-w-165;
 	@apply flex items-start gap-4;
-	@apply rounded-2xl p-6 mx-5 lg:mx-0;
+	@apply rounded-2xl p-6 mx-10 lg:ml-0;
 	@apply border border-black/2 bg-black/2 backdrop-blur;
 	@apply transition-all duration-300 ease-out;
 	@apply select-none;
@@ -765,12 +765,12 @@ section {
 }
 
 .contact-btns {
-	@apply mt-6 flex flex-wrap gap-4;
+	@apply mt-6 flex flex-wrap gap-4 mx-10 lg:mx-0;
 }
 
 .contact-btn {
 	@apply inline-flex items-center justify-center gap-2;
-	@apply rounded-md px-6 mx-6 py-2;
+	@apply rounded-md px-6 py-2;
 	@apply w-full sm:w-auto;
 	@apply text-sm tracking-wide;
 	@apply border;
