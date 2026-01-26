@@ -72,7 +72,7 @@ html {
 .site-header__action {
 	@apply inline-flex items-center gap-2;
 	@apply h-9 rounded-md;
-	@apply px-3;
+	@apply px-2;
 	@apply text-sm font-semibold;
 	@apply border border-black/10;
 	@apply transition-all duration-200;
@@ -456,7 +456,7 @@ section {
 }
 
 .slider__track .service-card {
-	@apply w-[330px] lg:w-xl;
+	@apply w-75 sm:w-84 lg:w-xl;
 	flex: 0 0 auto;
 }
 
@@ -575,7 +575,7 @@ section {
 }
 
 .slider__track .step-card {
-	@apply w-[320px] lg:w-72;
+	@apply w-75;
 	flex: 0 0 auto;
 }
 
@@ -804,8 +804,9 @@ section {
 
 /* badge */
 .hours-badge {
-	@apply ml-[10px] text-[12px] font-extrabold px-[10px] py-[5px] rounded-full;
+	@apply text-[12px] font-semibold px-[10px] py-[5px] rounded-lg;
 	@apply border border-black/10 bg-black/3 text-primary;
+	@apply text-center mt-5;
 }
 
 .hours-badge.is-open {
@@ -906,7 +907,7 @@ section {
 /* link columns */
 .site-footer__col {
 	@apply flex flex-col gap-3 text-sm;
-	@apply w-[120px];
+	@apply w-[145px];
 }
 
 .site-footer__title {

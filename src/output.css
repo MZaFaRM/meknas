@@ -39,6 +39,7 @@
     --tracking-wide: 0.025em;
     --leading-tight: 1.25;
     --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -361,7 +362,7 @@ html {
   gap: calc(var(--spacing) * 2);
   height: calc(var(--spacing) * 9);
   border-radius: var(--radius-md);
-  padding-inline: calc(var(--spacing) * 3);
+  padding-inline: calc(var(--spacing) * 2);
   font-size: var(--text-sm);
   line-height: var(--tw-leading, var(--text-sm--line-height));
   --tw-font-weight: var(--font-weight-semibold);
@@ -944,7 +945,10 @@ section {
   }
 }
 .slider__track .service-card {
-  width: 330px;
+  width: calc(var(--spacing) * 75);
+  @media (width >= 40rem) {
+    width: calc(var(--spacing) * 84);
+  }
   @media (width >= 64rem) {
     width: var(--container-xl);
   }
@@ -1129,10 +1133,7 @@ section {
   }
 }
 .slider__track .step-card {
-  width: 320px;
-  @media (width >= 64rem) {
-    width: calc(var(--spacing) * 72);
-  }
+  width: calc(var(--spacing) * 75);
   flex: 0 0 auto;
 }
 .step-card.is-active {
@@ -1484,13 +1485,12 @@ section {
   opacity: 60%;
 }
 .hours-badge {
-  margin-left: 10px;
-  border-radius: calc(infinity * 1px);
+  border-radius: var(--radius-lg);
   padding-inline: 10px;
   padding-block: 5px;
   font-size: 12px;
-  --tw-font-weight: var(--font-weight-extrabold);
-  font-weight: var(--font-weight-extrabold);
+  --tw-font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold);
   border-style: var(--tw-border-style);
   border-width: 1px;
   border-color: color-mix(in srgb, #000 10%, transparent);
@@ -1502,6 +1502,8 @@ section {
     background-color: color-mix(in oklab, var(--color-black) 3%, transparent);
   }
   color: var(--color-primary);
+  margin-top: calc(var(--spacing) * 5);
+  text-align: center;
 }
 .hours-badge.is-open {
   border-color: rgba(18,140,126,0.25);
@@ -1667,7 +1669,7 @@ section {
   gap: calc(var(--spacing) * 3);
   font-size: var(--text-sm);
   line-height: var(--tw-leading, var(--text-sm--line-height));
-  width: 120px;
+  width: 145px;
 }
 .site-footer__title {
   --tw-font-weight: var(--font-weight-semibold);
