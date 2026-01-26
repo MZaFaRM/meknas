@@ -333,3 +333,27 @@ function updateBusinessHoursBadge() {
 // run on load + refresh
 updateBusinessHoursBadge();
 setInterval(updateBusinessHoursBadge, 30000);
+
+document.querySelectorAll(".service-card").forEach((card) => {
+	const titleEl = card.querySelector(".service-card__title");
+	const btn = card.querySelector(".service-card__btn");
+
+	if (!titleEl || !btn) return;
+
+	const serviceTitle = titleEl.textContent.trim();
+	const message = `Hi MEKNAS Business Services, I want to know more about the ${serviceTitle} you provide at your service center.`;
+
+	const url = `https://wa.me/971522006970?text=${encodeURIComponent(
+		message,
+	)}`;
+
+	const link = document.createElement("a");
+	link.className = btn.className;
+	link.href = url;
+	link.target = "_blank";
+	link.rel = "noopener";
+
+	link.innerHTML = btn.innerHTML;
+
+	btn.replaceWith(link);
+});

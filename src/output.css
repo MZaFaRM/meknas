@@ -937,6 +937,10 @@ section {
   transition-timing-function: var(--ease-out);
   display: flex;
   gap: calc(var(--spacing) * 4);
+  height: calc(var(--spacing) * 90);
+  @media (width >= 64rem) {
+    height: calc(var(--spacing) * 80);
+  }
 }
 .slider__track .service-card {
   width: 330px;
@@ -1067,7 +1071,7 @@ section {
   color: var(--color-accent);
 }
 .service-card__btn {
-  margin-top: calc(var(--spacing) * 5);
+  margin-top: auto;
   display: inline-flex;
   align-items: center;
   gap: calc(var(--spacing) * 2);

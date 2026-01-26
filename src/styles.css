@@ -451,6 +451,7 @@ section {
 	@apply p-6;
 	@apply transition-all duration-300 ease-out;
 	@apply flex gap-4;
+	@apply h-90 lg:h-80
 }
 
 .slider__track .service-card {
@@ -544,7 +545,7 @@ section {
 
 /* button */
 .service-card__btn {
-	@apply mt-5 inline-flex items-center gap-2;
+	@apply mt-auto inline-flex items-center gap-2;
 	@apply text-primary font-semibold text-sm;
 	@apply transition-all duration-300;
 }
