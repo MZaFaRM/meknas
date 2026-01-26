@@ -164,8 +164,9 @@ function setBadge({ text, state }) {
 	}
 }
 
-// business hours schedule in minutes (Dubai time)
-// Mon-Sat: 09:00-14:00 and 16:00-22:30
+const TZ = "Asia/Dubai";
+
+// business hours in Dubai time (minutes since midnight)
 const SCHEDULE = {
 	Mon: [
 		{ from: 9 * 60, to: 14 * 60 },
@@ -191,146 +192,110 @@ const SCHEDULE = {
 		{ from: 9 * 60, to: 14 * 60 },
 		{ from: 16 * 60, to: 22 * 60 + 30 },
 	],
-	Sun: [], // closed
+	Sun: [],
 };
 
-function minutesSinceMidnight(date) {
-	return date.getHours() * 60 + date.getMinutes();
-}
-
-function getWeekdayShort(date) {
-	return new Intl.DateTimeFormat("en-US", {
-		timeZone: "Asia/Dubai",
+function getDubaiParts() {
+	const parts = new Intl.DateTimeFormat("en-US", {
+		timeZone: TZ,
 		weekday: "short",
-	}).format(date);
+		hour: "2-digit",
+		minute: "2-digit",
+		hour12: false,
+	}).formatToParts(new Date());
+
+	const map = Object.fromEntries(parts.map((p) => [p.type, p.value]));
+	return {
+		weekday: map.weekday, // "Mon"
+		hour: Number(map.hour), // 0-23
+		minute: Number(map.minute), // 0-59
+	};
 }
 
-function addMinutesDubai(date, mins) {
-	const d = new Date(date.getTime());
-	d.setMinutes(d.getMinutes() + mins);
-	return d;
+function formatMinutes12(mins) {
+	let h = Math.floor(mins / 60);
+	const m = mins % 60;
+	const ampm = h >= 12 ? "PM" : "AM";
+	h = h % 12;
+	if (h === 0) h = 12;
+	return `${h}:${String(m).padStart(2, "0")} ${ampm}`;
 }
 
-function getNextOpenInfo(nowDubai) {
-	// Check today and next 7 days
-	for (let i = 0; i < 7; i++) {
-		const day = addMinutesDubai(nowDubai, i * 24 * 60);
-		const weekday = getWeekdayShort(day);
-		const slots = SCHEDULE[weekday] || [];
+function setBadge({ text, state }) {
+	const badge = document.getElementById("hoursBadge");
+	if (!badge) return;
 
-		if (!slots.length) continue;
+	badge.textContent = text;
+	badge.classList.remove("is-open", "is-closed", "is-soon");
+	badge.classList.add(state);
 
-		for (const slot of slots) {
-			const openTime = new Date(day);
-			openTime.setHours(Math.floor(slot.from / 60), slot.from % 60, 0, 0);
-
-			// For today, only future openings
-			if (i === 0) {
-				if (minutesSinceMidnight(nowDubai) < slot.from) {
-					return { when: openTime, isToday: true };
-				}
-			} else {
-				return { when: openTime, isToday: false };
-			}
-		}
-	}
-
-	return null;
-}
-
-function getCloseInfo(nowDubai, slotsToday) {
-	const nowMins = minutesSinceMidnight(nowDubai);
-	const slot = slotsToday.find((s) => nowMins >= s.from && nowMins < s.to);
-	if (!slot) return null;
-
-	const closeTime = new Date(nowDubai);
-	closeTime.setHours(Math.floor(slot.to / 60), slot.to % 60, 0, 0);
-	return closeTime;
+	const card = document.getElementById("hoursCard");
+	if (card)
+		card.classList.toggle(
+			"is-open",
+			state === "is-open" || state === "is-soon",
+		);
 }
 
 function updateBusinessHoursBadge() {
-	const nowDubai = getDubaiNow();
-	const weekday = getWeekdayShort(nowDubai);
-	const slotsToday = SCHEDULE[weekday] || [];
+	const params = new URLSearchParams(location.search);
 
-	const nowMins = minutesSinceMidnight(nowDubai);
+	let { weekday, hour, minute } = getDubaiParts();
 
-	// Closed day
-	if (!slotsToday.length) {
-		const nextOpen = getNextOpenInfo(nowDubai);
-		if (!nextOpen) {
-			setBadge({ text: "Closed", state: "is-closed" });
-			return;
-		}
-		const label = nextOpen.isToday ? "Opens" : "Opens Tomorrow";
-		setBadge({
-			text: `Closed • ${label} ${formatTime12(nextOpen.when)}`,
-			state: "is-closed",
-		});
+	const slots = SCHEDULE[weekday] || [];
+	const nowMins = hour * 60 + minute;
+
+	// Closed today
+	if (!slots.length) {
+		setBadge({ text: "Closed", state: "is-closed" });
 		return;
 	}
 
-	// Open?
-	const openSlot = slotsToday.find(
-		(s) => nowMins >= s.from && nowMins < s.to,
-	);
-
-	if (openSlot) {
-		const closeTime = getCloseInfo(nowDubai, slotsToday);
-		const minsLeft = openSlot.to - nowMins;
-
+	// Open now?
+	const currentSlot = slots.find((s) => nowMins >= s.from && nowMins < s.to);
+	if (currentSlot) {
+		const minsLeft = currentSlot.to - nowMins;
 		if (minsLeft <= 30) {
 			setBadge({
-				text: `Closing Soon • ${formatTime12(closeTime)}`,
+				text: `Closing Soon • ${formatMinutes12(currentSlot.to)}`,
 				state: "is-soon",
 			});
 			return;
 		}
 
 		setBadge({
-			text: `Open • Closes ${formatTime12(closeTime)}`,
+			text: `Open • Closes ${formatMinutes12(currentSlot.to)}`,
 			state: "is-open",
 		});
 		return;
 	}
 
-	// Closed but might open later today
-	const nextOpen = getNextOpenInfo(nowDubai);
-
-	if (nextOpen && nextOpen.isToday) {
-		const minsUntil = Math.max(
-			0,
-			minutesSinceMidnight(nextOpen.when) - nowMins,
-		);
-
+	// Next opening today?
+	const nextSlot = slots.find((s) => nowMins < s.from);
+	if (nextSlot) {
+		const minsUntil = nextSlot.from - nowMins;
 		if (minsUntil <= 30) {
 			setBadge({
-				text: `Opening Soon • ${formatTime12(nextOpen.when)}`,
+				text: `Opening Soon • ${formatMinutes12(nextSlot.from)}`,
 				state: "is-soon",
 			});
 			return;
 		}
 
 		setBadge({
-			text: `Closed • Opens ${formatTime12(nextOpen.when)}`,
+			text: `Closed • Opens ${formatMinutes12(nextSlot.from)}`,
 			state: "is-closed",
 		});
 		return;
 	}
 
-	// Otherwise tomorrow
-	if (nextOpen) {
-		setBadge({
-			text: `Closed • Opens Tomorrow ${formatTime12(nextOpen.when)}`,
-			state: "is-closed",
-		});
-		return;
-	}
-
-	setBadge({ text: "Closed", state: "is-closed" });
+	// After last slot
+	setBadge({
+		text: "Closed • Opens Tomorrow 9:00 AM",
+		state: "is-closed",
+	});
 }
 
-// run on load + refresh
 updateBusinessHoursBadge();
 setInterval(updateBusinessHoursBadge, 30000);
 
