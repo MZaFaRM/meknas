@@ -456,7 +456,7 @@ section {
 }
 
 .slider__track .service-card {
-	@apply w-75 sm:w-84 lg:w-xl;
+	@apply w-80 sm:w-84 lg:w-xl;
 	flex: 0 0 auto;
 }
 
@@ -531,13 +531,14 @@ section {
 }
 
 .service-card__list li {
-	@apply flex items-center gap-2;
+	@apply flex items-start gap-2 leading-5;
 }
 
 .service-card__list li::before {
 	content: "›";
 	@apply text-primary font-bold text-base leading-none;
 	@apply transition-colors duration-300 ease-out;
+	transform: translateY(2px);
 }
 
 .service-card.is-active .service-card__list li::before {
