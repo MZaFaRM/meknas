@@ -48,7 +48,7 @@ html {
 }
 
 .site-header__logo {
-	@apply rounded-sm;
+	@apply w-8 h-8;
 }
 
 /* desktop nav */
@@ -452,7 +452,7 @@ section {
 	@apply p-6;
 	@apply transition-all duration-300 ease-out;
 	@apply flex gap-4;
-	@apply h-90 lg:h-80
+	@apply h-90 lg:h-80;
 }
 
 .slider__track .service-card {
@@ -896,7 +896,7 @@ section {
 }
 
 .site-footer__logo img {
-	@apply rounded-md;
+	@apply w-8 h-8;
 }
 
 .site-footer__tagline {
