@@ -210,9 +210,9 @@ section {
 .slider {
 	@apply w-full px-6 py-6;
 	overflow-x: auto;
-	overflow-y: hidden;
-	scroll-snap-type: x mandatory;
-	scroll-snap-stop: always;
+	overflow-y: visible;
+	scroll-snap-type: x proximity;
+	scroll-snap-stop: normal;
 	-webkit-overflow-scrolling: touch;
 	scrollbar-width: none;
 	scroll-padding-left: 24px;
@@ -232,7 +232,7 @@ section {
 	scroll-snap-align: start;
 	flex: 0 0 auto;
 	scroll-snap-align: start;
-	scroll-snap-stop: always;
+	scroll-snap-stop: normal;
 }
 
 /* DESKTOP: normal layout */
@@ -246,6 +246,27 @@ section {
 		width: 100%;
 		padding: 0;
 	}
+}
+
+.slider-dots {
+	@apply mt-4 flex justify-center gap-2 lg:hidden;
+}
+
+.slider-dot {
+	@apply inline-block;
+	@apply w-2 h-2 rounded-full;
+	@apply bg-white/25;
+	@apply transition-all duration-300 ease-out;
+}
+
+.slider-dots--dark .slider-dot {
+	@apply bg-primary/25;
+}
+
+.slider-dot.is-active {
+	@apply w-6;
+	@apply bg-accent;
+	box-shadow: 0 0 14px rgba(212, 168, 74, 0.35);
 }
 
 #hero {

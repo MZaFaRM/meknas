@@ -200,6 +200,9 @@
   }
 }
 @layer utilities {
+  .visible {
+    visibility: visible;
+  }
   .mt-5 {
     margin-top: calc(var(--spacing) * 5);
   }
@@ -214,6 +217,9 @@
   }
   .w-full {
     width: 100%;
+  }
+  .resize {
+    resize: both;
   }
   .font-inter {
     font-family: var(--font-inter);
@@ -586,9 +592,9 @@ section {
   padding-inline: calc(var(--spacing) * 6);
   padding-block: calc(var(--spacing) * 6);
   overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-snap-stop: always;
+  overflow-y: visible;
+  scroll-snap-type: x proximity;
+  scroll-snap-stop: normal;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   scroll-padding-left: 24px;
@@ -605,7 +611,7 @@ section {
 .slider__track > * {
   flex: 0 0 auto;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
 }
 @media (min-width: 1024px) {
   .slider {
@@ -618,6 +624,43 @@ section {
     width: 100%;
     padding: 0;
   }
+}
+.slider-dots {
+  margin-top: calc(var(--spacing) * 4);
+  display: flex;
+  justify-content: center;
+  gap: calc(var(--spacing) * 2);
+  @media (width >= 64rem) {
+    display: none;
+  }
+}
+.slider-dot {
+  display: inline-block;
+  height: calc(var(--spacing) * 2);
+  width: calc(var(--spacing) * 2);
+  border-radius: calc(infinity * 1px);
+  background-color: color-mix(in srgb, #fff 25%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-white) 25%, transparent);
+  }
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 300ms;
+  transition-duration: 300ms;
+  --tw-ease: var(--ease-out);
+  transition-timing-function: var(--ease-out);
+}
+.slider-dots--dark .slider-dot {
+  background-color: color-mix(in srgb, #19255a 25%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-primary) 25%, transparent);
+  }
+}
+.slider-dot.is-active {
+  width: calc(var(--spacing) * 6);
+  background-color: var(--color-accent);
+  box-shadow: 0 0 14px rgba(212, 168, 74, 0.35);
 }
 #hero {
   height: calc(100svh - var(--nav-height));

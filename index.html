@@ -72,7 +72,7 @@
 		<section id="hero" class="section--col">
 			<div class="hero-inner">
 				<div class="hero-content">
-					<div class="badge">Fast & Reliable</div>
+					<div class="badge">Quality Assured</div>
 
 					<p class="hero-title">
 						Fast, Reliable
@@ -252,6 +252,10 @@
 						</div>
 					</div>
 				</div>
+				<div
+					class="slider-dots slider-dots--dark"
+					aria-hidden="true"
+				></div>
 			</div>
 		</section>
 		<section id="process" class="section--col">
@@ -328,6 +332,7 @@
 						</div>
 					</div>
 				</div>
+				<div class="slider-dots" aria-hidden="true"></div>
 			</div>
 		</section>
 		<section id="location">
@@ -459,76 +464,5 @@
 			</div>
 		</footer>
 	</body>
-	<script>
-		const burgerBtn = document.getElementById("burgerBtn");
-		const mobileMenu = document.getElementById("mobileMenu");
-
-		const closeMenu = () => mobileMenu.classList.remove("is-open");
-
-		burgerBtn.addEventListener("click", (e) => {
-			e.stopPropagation();
-			mobileMenu.classList.toggle("is-open");
-		});
-
-		mobileMenu.querySelectorAll("a").forEach((a) => {
-			a.addEventListener("click", closeMenu);
-		});
-
-		document.addEventListener("click", (e) => {
-			if (!mobileMenu.classList.contains("is-open")) return;
-			if (mobileMenu.contains(e.target) || burgerBtn.contains(e.target))
-				return;
-			closeMenu();
-		});
-
-		document.addEventListener("keydown", (e) => {
-			if (e.key === "Escape") closeMenu();
-		});
-
-		document.querySelectorAll(".slider").forEach((slider) => {
-			const cards = slider.querySelectorAll(".service-card, .step-card");
-
-			let isHovering = false;
-
-			const setActive = (target) => {
-				cards.forEach((c) => c.classList.remove("is-active"));
-				target.classList.add("is-active");
-			};
-
-			const obs = new IntersectionObserver(
-				(entries) => {
-					if (isHovering) return;
-
-					let best = null;
-					for (const e of entries) {
-						if (
-							!best ||
-							e.intersectionRatio > best.intersectionRatio
-						)
-							best = e;
-					}
-
-					if (best && best.isIntersecting) setActive(best.target);
-				},
-				{
-					root: slider,
-					threshold: [0.35, 0.5, 0.65, 0.8],
-				},
-			);
-
-			cards.forEach((c) => obs.observe(c));
-
-			// Hover overrides is-active
-			cards.forEach((card) => {
-				card.addEventListener("mouseenter", () => {
-					isHovering = true;
-					setActive(card);
-				});
-
-				card.addEventListener("mouseleave", () => {
-					isHovering = false;
-				});
-			});
-		});
-	</script>
+	<script src="./src/scripts.js"></script>
 </html>
