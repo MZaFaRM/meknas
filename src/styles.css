@@ -452,7 +452,7 @@ section {
 	@apply p-6;
 	@apply transition-all duration-300 ease-out;
 	@apply flex gap-4;
-	@apply h-90 lg:h-80;
+	@apply h-90 lg:h-100;
 }
 
 .slider__track .service-card {
@@ -514,7 +514,7 @@ section {
 }
 
 .service-card__title {
-	@apply text-lg font-bold text-primary;
+	@apply text-lg font-bold text-primary leading-6;
 }
 
 .service-card.is-active .service-card__title {
