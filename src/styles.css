@@ -14,7 +14,6 @@
 
 html {
 	scroll-behavior: smooth;
-	scroll-snap-type: y proximity;
 }
 
 .icon-whatsapp {
@@ -143,7 +142,6 @@ mobile-menu__nav a {
 
 section {
 	min-height: calc(100svh - var(--nav-height));
-	scroll-snap-align: start;
 	scroll-margin-top: var(--nav-height);
 	@apply overflow-hidden;
 	@apply py-8 lg:py-15;
