@@ -320,7 +320,8 @@ section {
 	@apply font-bold text-white leading-tight;
 	@apply text-4xl; /* mobile */
 	@apply lg:text-6xl; /* desktop */
-	@apply my-10;
+	@apply mt-10;
+	@apply mb-5;
 }
 
 .hero-title-accent {
@@ -331,7 +332,7 @@ section {
 	@apply text-[#D1D5DB] leading-7;
 	@apply text-base; /* mobile */
 	@apply lg:text-xl; /* desktop */
-	@apply mt-4;
+	@apply mb-5;
 }
 
 .hero-scroll {

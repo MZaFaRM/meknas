@@ -750,7 +750,8 @@ section {
     font-size: var(--text-6xl);
     line-height: var(--tw-leading, var(--text-6xl--line-height));
   }
-  margin-block: calc(var(--spacing) * 10);
+  margin-top: calc(var(--spacing) * 10);
+  margin-bottom: calc(var(--spacing) * 5);
 }
 .hero-title-accent {
   display: block;
@@ -766,7 +767,7 @@ section {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
   }
-  margin-top: calc(var(--spacing) * 4);
+  margin-bottom: calc(var(--spacing) * 5);
 }
 .hero-scroll {
   position: relative;
