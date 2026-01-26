@@ -764,6 +764,70 @@ section {
 	@apply mt-1 text-sm leading-6 text-[#4B5563];
 }
 
+/* ===== Business Hours ===== */
+
+.info-card--hours .info-card__desc {
+	@apply mt-[10px];
+}
+
+.hours-day {
+	@apply text-[12px] tracking-tight font-semibold opacity-70;
+}
+
+.hours-time {
+	@apply flex flex-col gap-[6px];
+}
+
+.hours-range {
+	@apply inline-flex items-baseline flex-wrap gap-[6px] rounded-xl;
+}
+
+/* aligned numbers */
+.hours-from,
+.hours-to {
+	@apply font-extrabold text-[14px] text-primary tabular-nums;
+}
+
+.hours-ampm {
+	@apply font-bold text-[11px] tracking-[0.4px] opacity-70 -translate-y-px;
+}
+
+.hours-sep {
+	@apply opacity-55 font-bold;
+}
+
+.muted {
+	@apply opacity-60;
+}
+
+/* badge */
+.hours-badge {
+	@apply ml-[10px] text-[12px] font-extrabold px-[10px] py-[5px] rounded-full;
+	@apply border border-black/10 bg-black/3 text-primary;
+}
+
+.hours-badge.is-open {
+	@apply border-[rgba(18,140,126,0.25)] bg-[rgba(18,140,126,0.12)] text-[#0b6f63];
+}
+
+.hours-badge.is-closed {
+	@apply border-[rgba(220,38,38,0.25)] bg-[rgba(220,38,38,0.10)] text-[#b91c1c];
+}
+
+.hours-badge.is-soon {
+	@apply border-[rgba(212,168,74,0.35)] bg-[rgba(212,168,74,0.18)] text-primary;
+}
+
+.info-card--hours.is-open {
+	@apply border-[rgba(18,140,126,0.18)] bg-[rgba(18,140,126,0.035)];
+}
+
+/* mobile stacking */
+@media (max-width: 420px) {
+	.hours-range {
+		@apply w-fit;
+	}
+}
 .contact-btns {
 	@apply mt-6 flex flex-wrap gap-4 mx-10 lg:mx-0;
 }

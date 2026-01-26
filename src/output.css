@@ -34,6 +34,8 @@
     --text-6xl--line-height: 1;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --tracking-tight: -0.025em;
     --tracking-wide: 0.025em;
     --leading-tight: 1.25;
     --radius-sm: 0.25rem;
@@ -1427,6 +1429,99 @@ section {
   line-height: calc(var(--spacing) * 6);
   color: #4B5563;
 }
+.info-card--hours .info-card__desc {
+  margin-top: 10px;
+}
+.hours-day {
+  font-size: 12px;
+  --tw-font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold);
+  --tw-tracking: var(--tracking-tight);
+  letter-spacing: var(--tracking-tight);
+  opacity: 70%;
+}
+.hours-time {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.hours-range {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  border-radius: var(--radius-xl);
+}
+.hours-from, .hours-to {
+  font-size: 14px;
+  --tw-font-weight: var(--font-weight-extrabold);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-primary);
+  --tw-numeric-spacing: tabular-nums;
+  font-variant-numeric: var(--tw-ordinal,) var(--tw-slashed-zero,) var(--tw-numeric-figure,) var(--tw-numeric-spacing,) var(--tw-numeric-fraction,);
+}
+.hours-ampm {
+  --tw-translate-y: -1px;
+  translate: var(--tw-translate-x) var(--tw-translate-y);
+  font-size: 11px;
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+  --tw-tracking: 0.4px;
+  letter-spacing: 0.4px;
+  opacity: 70%;
+}
+.hours-sep {
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
+  opacity: 55%;
+}
+.muted {
+  opacity: 60%;
+}
+.hours-badge {
+  margin-left: 10px;
+  border-radius: calc(infinity * 1px);
+  padding-inline: 10px;
+  padding-block: 5px;
+  font-size: 12px;
+  --tw-font-weight: var(--font-weight-extrabold);
+  font-weight: var(--font-weight-extrabold);
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  border-color: color-mix(in srgb, #000 10%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    border-color: color-mix(in oklab, var(--color-black) 10%, transparent);
+  }
+  background-color: color-mix(in srgb, #000 3%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-black) 3%, transparent);
+  }
+  color: var(--color-primary);
+}
+.hours-badge.is-open {
+  border-color: rgba(18,140,126,0.25);
+  background-color: rgba(18,140,126,0.12);
+  color: #0b6f63;
+}
+.hours-badge.is-closed {
+  border-color: rgba(220,38,38,0.25);
+  background-color: rgba(220,38,38,0.10);
+  color: #b91c1c;
+}
+.hours-badge.is-soon {
+  border-color: rgba(212,168,74,0.35);
+  background-color: rgba(212,168,74,0.18);
+  color: var(--color-primary);
+}
+.info-card--hours.is-open {
+  border-color: rgba(18,140,126,0.18);
+  background-color: rgba(18,140,126,0.035);
+}
+@media (max-width: 420px) {
+  .hours-range {
+    width: fit-content;
+  }
+}
 .contact-btns {
   margin-inline: calc(var(--spacing) * 10);
   margin-top: calc(var(--spacing) * 6);
@@ -1764,6 +1859,26 @@ section {
   inherits: false;
   initial-value: 0;
 }
+@property --tw-ordinal {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-slashed-zero {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-numeric-figure {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-numeric-spacing {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-numeric-fraction {
+  syntax: "*";
+  inherits: false;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -1800,6 +1915,11 @@ section {
       --tw-leading: initial;
       --tw-ease: initial;
       --tw-space-y-reverse: 0;
+      --tw-ordinal: initial;
+      --tw-slashed-zero: initial;
+      --tw-numeric-figure: initial;
+      --tw-numeric-spacing: initial;
+      --tw-numeric-fraction: initial;
     }
   }
 }
