@@ -306,7 +306,7 @@ document.querySelectorAll(".service-card").forEach((card) => {
 	if (!titleEl || !btn) return;
 
 	const serviceTitle = titleEl.textContent.trim();
-	const message = `Hi MEKNAS Business Services, I want to know more about the ${serviceTitle} you provide at your service center.`;
+	const message = `Hi MEKNAS Businessman Services, I want to know more about the ${serviceTitle} you provide at your service center.`;
 
 	const url = `https://wa.me/971522006970?text=${encodeURIComponent(
 		message,
