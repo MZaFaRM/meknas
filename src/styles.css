@@ -450,7 +450,7 @@ section {
 	@apply p-6;
 	@apply transition-all duration-300 ease-out;
 	@apply flex gap-4;
-	@apply h-90 lg:h-100;
+	@apply h-90 lg:h-80;
 }
 
 .slider__track .service-card {
